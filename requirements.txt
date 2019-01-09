@@ -2,3 +2,7 @@ django
 gunicorn
 django-heroku
 beautifulsoup4
+requests
+urllib
+json
+time
