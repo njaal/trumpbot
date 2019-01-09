@@ -3,5 +3,3 @@ gunicorn
 django-heroku
 beautifulsoup4
 requests
-json
-time
