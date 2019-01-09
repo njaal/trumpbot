@@ -1,1 +1,1 @@
-python trump.py
+web: python trump.py
