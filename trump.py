@@ -34,13 +34,14 @@ for header in headers:
     if "Trump" in str(header):
         trumpHeaders.append(header.getText().strip())
 print("trumpHeaders")
-print(*trumpHeaders, sep = ", ")
+trumpString = '-'.join(trumpHeaders)
+print(trumpString)
 if trumpHeaders != previousTrumpHeaders:
     data = {'text': ",".join(trumpHeaders)}
     postToUrl(os.environ.get("KUNNSKAPSDELING_URL"), data)
     postToUrl(os.environ.get("EKS_CIBER_URL"), data)
     
-r.set('trump', trumpHeaders)
+r.set('trump', trumpString)
 print("Soon going to sleep")
 print("Prev trump Headers:")
 print(*previousTrumpHeaders, sep = ", ")
