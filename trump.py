@@ -7,7 +7,6 @@ import time
 import os
 import redis
 
-webhook_url = 'https://hooks.slack.com/services/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'
 trumpHeaders = []
 previousTrumpHeaders = []
 r = redis.from_url(os.environ.get("REDIS_URL"))
@@ -25,9 +24,20 @@ for header in headers:
 print("trumpHeaders")
 print(*trumpHeaders, sep = ", ")
 if trumpHeaders != previousTrumpHeaders:
-    slack_data = {'text': ",".join(trumpHeaders)}
+    data = {'text': ",".join(trumpHeaders)}
+    postToUrl(os.environ.get("KUNNSKAPSDELING_URL"), data)
+    postToUrl(os.environ.get("EKS_CIBER_URL"), data)
+    
+r.set('trump', trumpHeaders)
+print("Soon going to sleep")
+print("Prev trump Headers:")
+print(*previousTrumpHeaders, sep = ", ")
+print("Current trump headers:")
+print(*trumpHeaders, sep = ", ")
+
+def postToUrl(url, data):
     response = requests.post(
-        webhook_url, data=json.dumps(slack_data),
+        url, data=json.dumps(data),
         headers={'Content-Type': 'application/json'}
     )
     if response.status_code != 200:
@@ -35,9 +45,3 @@ if trumpHeaders != previousTrumpHeaders:
             'Request to slack returned an error %s, the response is:\n%s'
             % (response.status_code, response.text)
         )
-r.set('trump', trumpHeaders)
-print("Soon going to sleep")
-print("Prev trump Headers:")
-print(*previousTrumpHeaders, sep = ", ")
-print("Current trump headers:")
-print(*trumpHeaders, sep = ", ")
