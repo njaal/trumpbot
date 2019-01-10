@@ -3,3 +3,5 @@ gunicorn
 django-heroku
 beautifulsoup4
 requests
+redis==3.0.1
+os
