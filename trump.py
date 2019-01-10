@@ -10,7 +10,7 @@ import redis
 trumpHeaders = []
 previousTrumpHeaders = []
 print("REDIS URL: "+os.environ.get("REDIS_URL"))
-r = redis.from_url(os.environ.get("REDIS_URL"))
+r = redis.from_url(os.environ.get("REDISTOGO_URL"))
 
 page = requests.get("http://vg.no")
 soup = BeautifulSoup(page.content, 'html.parser')
