@@ -7,6 +7,17 @@ import time
 import os
 import redis
 
+def postToUrl(url, data):
+    response = requests.post(
+        url, data=json.dumps(data),
+        headers={'Content-Type': 'application/json'}
+    )
+    if response.status_code != 200:
+        raise ValueError(
+            'Request to slack returned an error %s, the response is:\n%s'
+            % (response.status_code, response.text)
+        )
+
 trumpHeaders = []
 previousTrumpHeaders = []
 print("REDIS URL: "+os.environ.get("REDISTOGO_URL"))
@@ -35,14 +46,3 @@ print("Prev trump Headers:")
 print(*previousTrumpHeaders, sep = ", ")
 print("Current trump headers:")
 print(*trumpHeaders, sep = ", ")
-
-def postToUrl(url, data):
-    response = requests.post(
-        url, data=json.dumps(data),
-        headers={'Content-Type': 'application/json'}
-    )
-    if response.status_code != 200:
-        raise ValueError(
-            'Request to slack returned an error %s, the response is:\n%s'
-            % (response.status_code, response.text)
-        )
