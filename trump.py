@@ -20,14 +20,13 @@ def postToUrl(url, data):
 
 trumpHeaders = []
 previousTrumpHeaders = []
-print("REDIS URL: "+os.environ.get("REDISTOGO_URL"))
 r = redis.from_url(os.environ.get("REDISTOGO_URL"))
 
 page = requests.get("http://vg.no")
 soup = BeautifulSoup(page.content, 'html.parser')
 headers = soup.find_all(class_="article-content")
 
-previousTrumpHeaders=r.get('trump')
+previousTrumpHeaders= json.loads(r.get('trump'))
 print (previousTrumpHeaders)
 
 for header in headers:
@@ -40,5 +39,5 @@ if trumpHeaders != previousTrumpHeaders:
     data = {'text': ",".join(trumpHeaders)}
     postToUrl(os.environ.get("KUNNSKAPSDELING_URL"), data)
     postToUrl(os.environ.get("EKS_CIBER_URL"), data)
-    
-r.set('trump', trumpString)
+    #serialize
+r.set('trump', json.dumps(trumpString))
