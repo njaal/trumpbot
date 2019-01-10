@@ -42,8 +42,3 @@ if trumpHeaders != previousTrumpHeaders:
     postToUrl(os.environ.get("EKS_CIBER_URL"), data)
     
 r.set('trump', trumpString)
-print("Soon going to sleep")
-print("Prev trump Headers:")
-print(*previousTrumpHeaders, sep = ", ")
-print("Current trump headers:")
-print(*trumpHeaders, sep = ", ")
