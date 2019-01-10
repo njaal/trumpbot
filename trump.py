@@ -26,7 +26,9 @@ page = requests.get("http://vg.no")
 soup = BeautifulSoup(page.content, 'html.parser')
 headers = soup.find_all(class_="article-content")
 
-previousTrumpHeaders= json.loads(r.get('trump'))
+previousTrumpHeaders = r.get('trump')
+if previousTrumpHeaders is not None:
+    previousTrumpHeaders = json.loads(previousTrumpHeaders)
 print (previousTrumpHeaders)
 
 for header in headers:
