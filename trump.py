@@ -27,6 +27,7 @@ soup = BeautifulSoup(page.content, 'html.parser')
 headers = soup.find_all(class_="article-content")
 
 previousTrumpHeaders = r.get('trump')
+print("previous:" + previousTrumpHeaders)
 if previousTrumpHeaders is not None:
     previousTrumpHeaders = json.loads(previousTrumpHeaders)
 print (previousTrumpHeaders)
