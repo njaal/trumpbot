@@ -31,15 +31,16 @@ previousTrumpHeaders = r.get('trump')
 #print("previous:" + previousTrumpHeaders)
 if previousTrumpHeaders is not None:
     previousTrumpHeaders = previousTrumpHeaders.decode("utf-8")
-print (previousTrumpHeaders)
+print ("tidligere header: "+previousTrumpHeaders)
 
 for header in headers:
     if "Trump" in str(header):
         trumpHeaders.append(header.getText().strip())
-print("trumpHeaders")
+print("nåværende trumpHeaders:")
 trumpString = '-'.join(trumpHeaders)
 print(trumpString)
 if trumpHeaders != previousTrumpHeaders:
+    print("Ny(e) overskrift(er) funnet")
     data = {'text': ",".join(trumpHeaders)}
     postToUrl(os.environ.get("KUNNSKAPSDELING_URL"), data)
     postToUrl(os.environ.get("EKS_CIBER_URL"), data)
