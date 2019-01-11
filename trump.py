@@ -30,7 +30,7 @@ previousTrumpHeaders = r.get('trump')
 
 #print("previous:" + previousTrumpHeaders)
 if previousTrumpHeaders is not None:
-    previousTrumpHeaders = previousTrumpHeaders.decode('unicode-escape').encode('latin1').decode('utf-8').strip()
+    previousTrumpHeaders = previousTrumpHeaders.decode('unicode-escape').encode('latin1').decode('utf-8').replace('"','')
 print ("tidligere header: "+previousTrumpHeaders)
 
 for header in headers:
