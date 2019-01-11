@@ -39,7 +39,7 @@ for header in headers:
 print("nåværende trumpHeaders:")
 trumpString = '-'.join(trumpHeaders)
 print(trumpString)
-if trumpHeaders != previousTrumpHeaders:
+if trumpString != previousTrumpHeaders:
     print("Ny(e) overskrift(er) funnet")
     data = {'text': ",".join(trumpHeaders)}
     postToUrl(os.environ.get("KUNNSKAPSDELING_URL"), data)
