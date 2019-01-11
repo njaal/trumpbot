@@ -32,6 +32,7 @@ previousTrumpHeaders = r.get('trump')
 if previousTrumpHeaders is not None:
     temp = previousTrumpHeaders.decode("utf-8")
     if temp is not None:
+        print("temp: "+temp)
         previousTrumpHeaders = json.loads(temp)
 print (previousTrumpHeaders)
 
