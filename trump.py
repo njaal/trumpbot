@@ -45,4 +45,4 @@ if trumpHeaders != previousTrumpHeaders:
     postToUrl(os.environ.get("KUNNSKAPSDELING_URL"), data)
     postToUrl(os.environ.get("EKS_CIBER_URL"), data)
     #serialize
-r.set('trump', json.dumps(trumpString))
+r.set('trump', json.dumps(trumpString, ensure_ascii=False).encode('utf8'))
