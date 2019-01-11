@@ -9,7 +9,7 @@ import redis
 
 def postToUrl(url, data):
     response = requests.post(
-        url, data=data,
+        url, data=json.dumps(data),
         headers={'Content-Type': 'application/json'}
     )
     if response.status_code != 200:
@@ -30,7 +30,7 @@ previousTrumpHeaders = r.get('trump')
 
 #print("previous:" + previousTrumpHeaders)
 if previousTrumpHeaders is not None:
-    previousTrumpHeaders = previousTrumpHeaders.decode("utf-8").decode('unicode_escape')
+    previousTrumpHeaders = previousTrumpHeaders.decode('unicode-escape').encode('latin1').decode('utf-8')
 print ("tidligere header: "+previousTrumpHeaders)
 
 for header in headers:
@@ -45,4 +45,4 @@ if trumpString != previousTrumpHeaders:
     postToUrl(os.environ.get("KUNNSKAPSDELING_URL"), data)
     postToUrl(os.environ.get("EKS_CIBER_URL"), data)
     #serialize
-r.set('trump', trumpString)
+r.set('trump', json.dumps(trumpString, ensure_ascii=False).encode('utf8'))
