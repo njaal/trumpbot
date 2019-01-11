@@ -27,9 +27,11 @@ soup = BeautifulSoup(page.content, 'html.parser')
 headers = soup.find_all(class_="article-content")
 
 previousTrumpHeaders = r.get('trump')
+
 #print("previous:" + previousTrumpHeaders)
 if previousTrumpHeaders is not None:
-    previousTrumpHeaders = json.loads(previousTrumpHeaders)
+    previousTrumpHeaders = previousTrumpHeaders.read()
+    previousTrumpHeaders = json.loads(previousTrumpHeaders.decode("utf-8"))
 print (previousTrumpHeaders)
 
 for header in headers:
