@@ -30,10 +30,7 @@ previousTrumpHeaders = r.get('trump')
 
 #print("previous:" + previousTrumpHeaders)
 if previousTrumpHeaders is not None:
-    temp = previousTrumpHeaders.decode("utf-8")
-    if temp is not None:
-        print("temp: "+temp)
-        previousTrumpHeaders = json.loads(temp)
+    previousTrumpHeaders = previousTrumpHeaders.decode("utf-8")
 print (previousTrumpHeaders)
 
 for header in headers:
