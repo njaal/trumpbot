@@ -36,6 +36,7 @@ print ("tidligere header: "+previousTrumpHeaders)
 for header in headers:
     if "Trump" in str(header):
         trumpHeaders.append(header.getText().strip())
+        print(header.findAll('a'))[0]
 print("nåværende trumpHeaders:")
 trumpString = '-'.join(trumpHeaders)
 print(trumpString)
